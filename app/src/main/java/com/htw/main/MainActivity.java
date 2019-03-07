@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private TextView mTextView = null;
     private WebView mWebView = null;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                Log.e("huangtanwen","shouldOverrideUrlLoading");
+                Log.e(TAG,"shouldOverrideUrlLoading");
                 return super.shouldOverrideUrlLoading(view, request);
             }
         });

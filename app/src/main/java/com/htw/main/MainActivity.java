@@ -1,36 +1,26 @@
 package com.htw.main;
 
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
-
-    private TextView mTextView = null;
-    private WebView mWebView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initView();
+        initFragment();
     }
 
-    private void initView() {
-        //mTextView = (TextView) findViewById(R.id.show_text);
-        mWebView = (WebView) findViewById(R.id.webWview);
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                Log.e(TAG,"shouldOverrideUrlLoading");
-                return super.shouldOverrideUrlLoading(view, request);
-            }
-        });
-        mWebView.loadUrl("http://www.baidu.com");
+    private void initFragment() {
+        HtmlFragment htmlFragment = HtmlFragment.newInstance("MainActivity");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.main_action, htmlFragment);
+        fragmentTransaction.commit();
     }
+
 }
